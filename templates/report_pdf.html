@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 12pt; }
+    h1 { text-align: center; margin-bottom: 10px; }
+    .section { margin-bottom: 10px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+    .label { font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    th, td { border: 1px solid #ddd; padding: 6px; text-align: left; }
+    .footer { margin-top: 20px; font-size: 10pt; text-align: center; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Diabetic Retinopathy Report</h1>
+
+  <div class="section grid">
+    <div><span class="label">Patient:</span> {{ patient_name }}</div>
+    <div><span class="label">Username:</span> {{ patient_username }}</div>
+    <div><span class="label">Doctor:</span> {{ doctor_name }}</div>
+    <div><span class="label">Doctor Username:</span> {{ doctor_username }}</div>
+    <div><span class="label">Created:</span> {{ created_at }}</div>
+    <div><span class="label">Model:</span> {{ model_name }}</div>
+  </div>
+
+  <div class="section">
+    <span class="label">Prediction:</span> {{ "DR likely (1)" if prediction==1 else "DR unlikely (0)" }}<br/>
+    <span class="label">Probability:</span> {{ "%.3f"|format(probability) }} (threshold {{ "%.3f"|format(threshold) }})
+  </div>
+
+  <div class="section">
+    <span class="label">Features</span>
+    <table>
+      <thead><tr><th>Feature</th><th>Value</th></tr></thead>
+      <tbody>
+        {% for k, v in features.items() %}
+        <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    For research use only. Not a medical device.
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>New Assessment</h2>
+<form method="post" class="form-grid">
+  <div>
+    <label>Exudates count</label>
+    <input type="number" name="exudates_count" min="0" step="1" required />
+  </div>
+  <div>
+    <label>Hemorrhages count</label>
+    <input type="number" name="hemorrhages_count" min="0" step="1" required />
+  </div>
+  <div>
+    <label>Microaneurysms count</label>
+    <input type="number" name="microaneurysms_count" min="0" step="1" required />
+  </div>
+  <div>
+    <label>Vessel tortuosity</label>
+    <input type="number" name="vessel_tortuosity" min="0" step="0.0001" value="0.06" required />
+  </div>
+  <div>
+    <label>Macular thickness (µm)</label>
+    <input type="number" name="macular_thickness" min="150" step="0.1" value="288.0" required />
+  </div>
+  <div>
+    <label>Fasting glucose (mg/dL)</label>
+    <input type="number" name="fasting_glucose" min="50" step="0.1" value="126.0" required />
+  </div>
+  <div>
+    <label>HbA1c (%)</label>
+    <input type="number" name="hba1c" min="3" step="0.1" value="6.5" required />
+  </div>
+  <div>
+    <label>Diabetes duration (years)</label>
+    <input type="number" name="diabetes_duration" min="0" step="0.1" value="1.0" required />
+  </div>
+
+  <div class="full-row">
+    <label>Assign Doctor (optional)</label>
+    <select name="doctor_id">
+      <option value="">-- None --</option>
+      {% for d in doctors %}
+        <option value="{{ d._id }}">{{ d.name }} ({{ d.username }})</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" class="primary">Submit</button>
+</form>
+{% endblock %}

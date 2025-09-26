@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-09-26 11:04:00",
+  "random_state": 42,
+  "data_path": "C:\\Users\\durga\\OneDrive\\Desktop\\DR full stack\\DesiredDR.csv",
+  "features": [
+    "exudates_count",
+    "hemorrhages_count",
+    "microaneurysms_count",
+    "vessel_tortuosity",
+    "macular_thickness",
+    "fasting_glucose",
+    "hba1c",
+    "diabetes_duration"
+  ],
+  "clinical_scale_factor": 0.1,
+  "target": "retinal_disorder",
+  "best_model_name": "Random Forest",
+  "thresholds_by_model": {
+    "XGBoost": 0.49499999999999994,
+    "Random Forest": 0.49999999999999994,
+    "Logistic Regression": 0.48499999999999993,
+    "LightGBM": 0.42499999999999993,
+    "KNN": 0.8049999999999999,
+    "CatBoost": 0.32499999999999996,
+    "Ensemble(mean)": 0.49499999999999994
+  }
+}

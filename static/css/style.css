@@ -1,0 +1,225 @@
+/* Dashing, colorful theme for the DR app
+   Place this file at: static/css/style.css
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  /* Brand palette */
+  --primary: #7c3aed;   /* purple */
+  --secondary: #06b6d4; /* cyan */
+  --accent: #f59e0b;    /* amber */
+  --success: #10b981;   /* green */
+  --warning: #f59e0b;
+  --danger: #ef4444;    /* red */
+  --info: #3b82f6;      /* blue */
+
+  --bg-start: #0f172a;  /* slate-900 */
+  --bg-mid:   #1e293b;  /* slate-800 */
+  --bg-end:   #0e7490;  /* cyan-700 */
+
+  --card: #ffffff;
+  --text: #0b1021;
+  --muted: #64748b;
+
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.16);
+  --radius: 12px;
+}
+
+/* Global reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% -10%, #c084fc33 0%, transparent 60%),
+              radial-gradient(1000px 600px at 100% 0%, #22d3ee33 0%, transparent 55%),
+              linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+  background-attachment: fixed;
+}
+
+/* Top nav */
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  color: #fff;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  box-shadow: var(--shadow-sm);
+  position: sticky; top: 0; z-index: 99;
+}
+.navbar .brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  display: flex; align-items: center; gap: 10px;
+}
+.navbar .brand::before {
+  content: "🩺";
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+.navbar .nav-links a {
+  color: #fff; text-decoration: none; margin-left: 16px; font-weight: 600;
+  padding: 8px 12px; border-radius: 999px; transition: all .2s ease;
+  background: rgba(255,255,255,0.10);
+}
+.navbar .nav-links a:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+
+/* Layout */
+.container {
+  max-width: 1100px; margin: 26px auto; padding: 0 16px;
+}
+
+/* Cards and forms */
+.card, .form-card {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 18px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(2,6,23,0.06);
+}
+
+.form-card input, .form-card select,
+.form-grid input, .form-grid select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: all .2s ease;
+  background: #fff;
+}
+.form-card input:focus, .form-card select:focus,
+.form-grid input:focus, .form-grid select:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(6,182,212,0.15);
+}
+
+/* Grid form for the assessment page */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  background: rgba(255,255,255,0.96);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(2,6,23,0.06);
+}
+.form-grid .full-row { grid-column: 1 / -1; }
+.form-grid label { font-weight: 600; color: #1f2937; margin-bottom: 6px; display: block; }
+
+/* Buttons */
+button, .btn {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 8px 18px rgba(124,58,237,0.35);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+button:hover, .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(124,58,237,0.45);
+  filter: brightness(1.04);
+}
+.btn.secondary {
+  background: linear-gradient(135deg, var(--secondary), #22d3ee);
+  box-shadow: 0 8px 18px rgba(34,211,238,0.35);
+}
+.btn.accent {
+  background: linear-gradient(135deg, var(--accent), #fb7185);
+  box-shadow: 0 8px 18px rgba(245,158,11,0.35);
+}
+.btn.success {
+  background: linear-gradient(135deg, var(--success), #22c55e);
+  box-shadow: 0 8px 18px rgba(16,185,129,0.35);
+}
+.btn.danger {
+  background: linear-gradient(135deg, var(--danger), #f97316);
+  box-shadow: 0 8px 18px rgba(239,68,68,0.35);
+}
+
+/* Flash messages */
+.flash-container { margin-bottom: 12px; }
+.flash {
+  padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; font-weight: 600;
+  color: #0b1021; border: 1px solid rgba(2,6,23,0.06);
+  box-shadow: var(--shadow-sm); background: #fff;
+}
+.flash.success { background: linear-gradient(90deg, #dcfce7, #bbf7d0); color: #064e3b; }
+.flash.danger  { background: linear-gradient(90deg, #fee2e2, #fecaca); color: #7f1d1d; }
+.flash.info    { background: linear-gradient(90deg, #dbeafe, #bfdbfe); color: #0c4a6e; }
+
+/* Tables */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.98);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(2,6,23,0.06);
+}
+.table th, .table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef2f7;
+}
+.table th {
+  background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.12));
+  color: #0b1021;
+  text-align: left;
+  font-weight: 700;
+}
+.table tr:nth-child(even) td { background: #fafafa; }
+.table tr:hover td { background: #f1f5f9; }
+
+/* Toolbar above tables */
+.toolbar { margin-bottom: 14px; display: flex; gap: 8px; }
+
+/* Footer */
+.footer {
+  color: #e2e8f0;
+  text-align: center;
+  padding: 24px 0 32px;
+  margin-top: 30px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #f8fafc;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.2);
+}
+h2, h3 { color: #111827; text-shadow: none; }
+
+/* Utility chips/badges (optional) */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 12px;
+}
+.badge.success { background: #dcfce7; color: #065f46; }
+.badge.danger  { background: #fee2e2; color: #991b1b; }
+.badge.info    { background: #dbeafe; color: #1e40af; }
+
+/* Links */
+a { color: var(--info); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Responsive tweaks */
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .navbar .nav-links a { margin-left: 8px; padding: 8px 10px; }
+  .container { padding: 0 12px; }
+}

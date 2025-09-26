@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient Dashboard</h2>
+<div class="card">
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Username:</strong> {{ user.username }}</p>
+</div>
+
+<h3>My Reports</h3>
+{% if reports %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Created</th>
+        <th>Probability</th>
+        <th>Prediction</th>
+        <th>Doctor</th>
+        <th>PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in reports %}
+      <tr>
+        <td>{{ r.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>{{ '%.3f'|format(r.probability) }}</td>
+        <td>{{ r.prediction }}</td>
+        <td>{{ r.doctor_name }}</td>
+        <td><a class="btn" href="{{ url_for('report_pdf', rid=r.id_str) }}">Download</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No reports yet. Create one: <a href="{{ url_for('new_assessment') }}">New Assessment</a></p>
+{% endif %}
+{% endblock %}
